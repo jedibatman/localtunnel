@@ -4,6 +4,7 @@ import socket
 import urllib2
 import urlparse
 import platform
+import logging
 
 import eventlet
 import eventlet.greenpool
@@ -68,6 +69,7 @@ def parse_address(address, default_port=None, default_ip=None):
 
 
 def discover_backend_port(hostname, frontend_port=80):
+    logging.info("hostname is {0}".format(hostname))
     resp = requests.get('http://{0}/meta/backend'.format(hostname))
     if resp.status_code == 200:
         return int(resp.text)
