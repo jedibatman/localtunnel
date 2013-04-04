@@ -11,6 +11,8 @@ from localtunnel import util
 from localtunnel import protocol
 from localtunnel import __version__
 
+import logging
+
 def open_proxy_backend(backend, target, name, client):
     proxy = eventlet.connect(backend)
     proxy.sendall(protocol.version)
@@ -83,6 +85,7 @@ def run():
     client = util.client_name()
     target = util.parse_address(args.target)[0]
     try:
+        logging.info("backend is :: {0}".format(backend))
         control = eventlet.connect(backend)
         control.sendall(protocol.version)
         protocol.send_message(control,
