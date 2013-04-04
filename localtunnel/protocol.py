@@ -11,8 +11,7 @@ errors = {
 
 def assert_protocol(socket):
     protocol = socket.recv(len(version))
-    # assert protocol == version
-    assert True
+    assert protocol == version
 
 # Message IO
 
